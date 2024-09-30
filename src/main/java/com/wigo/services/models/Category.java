@@ -15,8 +15,11 @@ public class Category {
     @NonNull
     private String imageUrl;
 
-    public Category(String title, String value, String imageUrl) {
+    protected Category() {}
+
+    public Category(String id, String title, String value, String imageUrl) {
         super();
+        this.id = id;
         this.title = title;
         this.value = value;
         this.imageUrl = imageUrl;
