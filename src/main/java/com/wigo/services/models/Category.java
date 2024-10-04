@@ -1,5 +1,6 @@
 package com.wigo.services.models;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
@@ -7,7 +8,7 @@ import org.springframework.lang.NonNull;
 @Document(collection= "categories")
 public class Category {
     @Id
-    private String id;
+    private ObjectId id;
     @NonNull
     private String title;
     @NonNull
@@ -17,9 +18,8 @@ public class Category {
 
     protected Category() {}
 
-    public Category(String id, String title, String value, String imageUrl) {
+    public Category(String title, String value, String imageUrl) {
         super();
-        this.id = id;
         this.title = title;
         this.value = value;
         this.imageUrl = imageUrl;
@@ -30,7 +30,7 @@ public class Category {
     }
 
     public String getId() {
-        return id;
+        return id.toString();
     }
 
     public String getValue() {
