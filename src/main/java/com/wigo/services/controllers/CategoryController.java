@@ -36,12 +36,18 @@ public class CategoryController {
 
     @GetMapping("/random")
     public List<Category> getRandomCategories() {
-        List<Category> allCategories = getAllCategories();
+        List<Category> allCategories = categoryRepo.findAll();
         // Shuffle the list to randomize
         Collections.shuffle(allCategories);
 
         // Return a subset of categories, for example, the first 3 categories
-        return allCategories.stream().limit(3).collect(Collectors.toList());
+       List<Category> randomCategories = allCategories.stream().filter(category -> !"More".equals(category.getTitle())).limit(4).collect(Collectors.toList());
+
+       Category moreCategory = allCategories.stream().filter(category -> "More".equals(category.getTitle())).findFirst().orElse(null);
+       if (moreCategory != null) {
+        randomCategories.add(moreCategory);
+       }
+       return randomCategories;
     }
 
 }
