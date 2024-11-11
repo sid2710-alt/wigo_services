@@ -1,19 +1,18 @@
 package com.wigo.services.models;
-
-import com.mongodb.lang.NonNull;
+import jakarta.validation.constraints.NotNull;
 
 public class Coordinates {
-    @NonNull
+    @NotNull
     private String id;
-    @NonNull
+    @NotNull
     private Integer latitude;
-    @NonNull
+    @NotNull
     private Integer longitude;
     private Double latitudeDelta = 0.0122;
     private Double longitudeDelta = 0.0122;
-    @NonNull
+    @NotNull
     private String address;
-    @NonNull
+    @NotNull
     private String title;
 
     protected Coordinates() {

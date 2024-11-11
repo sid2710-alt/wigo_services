@@ -3,10 +3,13 @@ package com.wigo.services.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.lang.NonNull;
 
 import com.wigo.services.enums.Verification;
+
+import jakarta.validation.constraints.NotNull;
 
 @Document(collection = "restaurant")
 public class Restaurant {
@@ -32,29 +35,32 @@ public class Restaurant {
         this.coordinates = coordinates;
     }
 
-    @NonNull
+    @Id
+    private ObjectId id;
+    @NotNull(message = "title can't be null")
     private String title;
-    @NonNull
+    @NotNull
     private String time;
-    @NonNull
+    @NotNull
     private String imageUrl;
     private List<String> food = new ArrayList<>();
-    @NonNull
+    @NotNull
     private boolean pickup;
-    @NonNull
+    @NotNull
     private boolean delivery;
-    @NonNull
+    @NotNull
     private boolean isAvailable;
-    @NonNull
+    @NotNull
     private String owner;
-    @NonNull
+    @NotNull
     private String code;
-    @NonNull
+    @NotNull
     private String logoUrl;
     private int rating = 3;
     private String ratingCount = "267";
     private Verification verification = Verification.PENDING;
     private String verificationMessage = "Your Restaurant is under review. We will notify you once it is verified";
+    @NotNull
     private Coordinates coordinates;
 
     public String getTitle() {
@@ -71,6 +77,10 @@ public class Restaurant {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getId() {
+        return id.toString();
     }
 
     public String getImageUrl() {
